@@ -15,12 +15,10 @@ public:
       unsigned long int m = (b + e)>>1;
      
       while (guess(m) != 0){
-        cout<<b<<' '<<m<<" "<<e<<'\n';
         if(guess(m) == 1)
           b = m+1;
         else if(guess(m) == -1)
           e = m-1;
-        
         m = (b + e)>>1;
       }
       return m;
