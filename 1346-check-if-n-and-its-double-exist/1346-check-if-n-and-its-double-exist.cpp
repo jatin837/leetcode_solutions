@@ -8,18 +8,14 @@ public:
         int ub = arr.size()-1;
         
         while(lb <= ub){
-            int mid = lb + (ub-lb)/2;
-            
+            int mid = (lb + ub)>>1;
             if(i != mid && arr[mid] == arr[i]*2)
                 return true;
             
-            if(arr[mid] > arr[i]*2){
+            if(arr[mid] > arr[i]*2)
                 ub = mid-1;
-            }
-            else
-            {
+            else 
                 lb = mid+1;
-            }
         }
     }
     return false;
