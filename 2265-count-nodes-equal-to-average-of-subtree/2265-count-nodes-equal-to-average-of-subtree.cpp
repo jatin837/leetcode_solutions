@@ -11,38 +11,28 @@
  */
 class Solution {
 public:
-    void printInorder(TreeNode* root){
-      if (root == nullptr)
-        return;
-      this->printInorder(root->left);
-      cout<<" "<<root->val<<" ";
-      this->printInorder(root->right);
-    }
     
-    int sumInorder(TreeNode* root, int& cnt){
+    int ans = 0;
+    pair<int, int> solve(TreeNode* root){
       if(root == nullptr)
-        return 0;
-      cnt++;
-      int ls = sumInorder(root->left, cnt);
-      int rs = sumInorder(root->right, cnt);
-      return ls + rs + root->val;
-    }
-  
-    void solve(TreeNode* root, int& ans){
-      if (root == nullptr)
-        return;
-      int cnt = 0;
-      int sum = sumInorder(root, cnt);
-      int avg = sum/cnt;
-      if (avg == root->val)
+        return {0, 0};
+      auto left = solve(root->left);
+      auto right = solve(root->right);
+      
+      int ls = left.second;
+      int lcnt = left.first; 
+      int rs = right.second;
+      int rcnt = right.first;
+      int sum = ls + rs + root->val;
+      int cnt = lcnt + rcnt + 1;
+      
+      if (root->val == sum/cnt)
         ans++;
-      solve(root->left, ans);
-      solve(root->right, ans);
+      return {cnt, sum};
     }
   
     int averageOfSubtree(TreeNode* root) {
-      int ans = 0;
-      solve(root, ans);
+      solve(root); 
       return ans;
     }
 };
