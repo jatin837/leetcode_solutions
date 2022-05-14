@@ -8,9 +8,9 @@ public:
       while(y){
         d = y%10;
         ans*=10;
-        if(ans > INT_MAX or (ans == INT_MAX and d > 7))
+        if(ans >= INT_MAX)
           return 0;
-        if(ans < INT_MIN or (ans == INT_MIN and d < -8))
+        if(ans <= INT_MIN)
           return 0;
         ans +=d;
         y /= 10;
