@@ -7,11 +7,12 @@ public:
       int y = abs(x);
       while(y){
         d = y%10;
-        if(ans > INT_MAX/10 or (ans == INT_MAX/10 and d > 7))
+        ans*=10;
+        if(ans > INT_MAX or (ans == INT_MAX and d > 7))
           return 0;
-        if(ans < INT_MIN/10 or (ans == INT_MIN/10 and d < -8))
+        if(ans < INT_MIN or (ans == INT_MIN and d < -8))
           return 0;
-        ans = d + 10*ans;
+        ans +=d;
         y /= 10;
         cout<<ans<<'\n';
       }
