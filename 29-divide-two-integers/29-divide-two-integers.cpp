@@ -20,7 +20,6 @@ public:
         else
           return divd;
       while(s<e){
-        cout<<s<<' '<<e<<'\n';
         if(divd - m*divr >= 0 and divd - (m+1)*divr < 0){
           if(neg)
             return -1*m;
