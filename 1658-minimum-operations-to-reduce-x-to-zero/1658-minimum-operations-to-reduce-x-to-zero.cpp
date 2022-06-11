@@ -38,19 +38,27 @@ public:
       
       // time to slide the windows. Remember, prefix sum array has to be sorted, we can leverage this property to update window pointers
       while(left <= right and right < pre.size()){
+        // compute the current subarray sum
         int curr_sum = pre[right] - pre[left];
+        // if current subarray sum is equal to target, increment right pointer
+        // now, length of this subarray is a potential candidate for solution, we just need to maximize it.
+        // also, since we found a solution, set found equal to true
         if(curr_sum == target){
           found = true;
           sub_arr_len = max(sub_arr_len, right-left);
           right++;
         }
+        // if current subarray sum is less then target, that means we need to increase current subarray sum, try to think which direction we should traverse in such case\U0001f914
         if(curr_sum < target)
           right++;
+        // similarly, try to think which direction we should traverse if current sum was greater than target
         if(curr_sum > target)
           left++;
       }
+      // finally, if we didn't found any such subarray, return -1
       if(not found)
         return -1;
+      // but, if we did found one(and potentially, many), return the one with maximum length
       return nums.size()-sub_arr_len;
     }
 };
