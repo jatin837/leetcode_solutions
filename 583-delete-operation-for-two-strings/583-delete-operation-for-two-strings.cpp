@@ -1,3 +1,6 @@
+// It's just Longest Common Subsequence problem
+// I have provided a link to youtube video if you'd like to  understand the problem
+// once we have the length of longest common subsequece, we can just subtract it from length of both words and add to obtain final answer
 class Solution {
 public:
     int minDistance(string word1, string word2) {
