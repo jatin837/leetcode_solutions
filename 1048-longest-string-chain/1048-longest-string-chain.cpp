@@ -22,16 +22,33 @@ public:
       return true;
     }
   
-    int longestStrChain(vector<string>& words) {
-      vector<int>dp(words.size(), 1);
-      sort(begin(words), end(words), cmp);
-      dp[0] = 1;
-      for(int i=1; i<dp.size(); i++){
-        for(int j=0; j<i; j++){
-          if(isPred(words[j], words[i]))
-            dp[i] = max(dp[i], 1+dp[j]);
-        }
-      }
-      return *max_element(begin(dp), end(dp)); 
+//  int longestStrChain(vector<string>& words) {
+//    vector<int>dp(words.size(), 1);
+//    sort(begin(words), end(words), cmp);
+//    dp[0] = 1;
+//    for(int i=1; i<dp.size(); i++){
+//      for(int j=0; j<i; j++){
+//        if(isPred(words[j], words[i]))
+//          dp[i] = max(dp[i], 1+dp[j]);
+//      }
+//    }
+//    return *max_element(begin(dp), end(dp)); 
+//  }
+  int longestStrChain(vector<string>& words) {
+    vector<int>dp(words.size(), 1);
+    sort(begin(words), end(words), cmp);
+    dp[0] = 1;
+    unordered_map<int, vector<int>>pred;
+   
+    pred[words[0].length()].push_back(0);
+    int ans = 1;
+    for(int i=1; i<dp.size(); i++){
+      for(auto idx:pred[words[i].length()-1])
+        if(isPred(words[idx], words[i]))
+          dp[i] = max(dp[i], 1+dp[idx]);
+      pred[words[i].length()].push_back(i);
+      ans = max(dp[i], ans);
     }
+    return ans; 
+  }
 };
