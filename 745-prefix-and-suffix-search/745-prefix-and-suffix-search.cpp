@@ -12,14 +12,14 @@ class WordFilter {
                 string p = word.substr(0, j);
                 for (int k = 0; k < wordSize; k++) {
                     string s = word.substr(k, wordSize);
-                    hashMap[p + "|" + s] = i + 1;
+                    hashMap[p + "-" + s] = i + 1;
                 }
             }
         }
     }
 
     int f(string prefix, string suffix) {
-        string s = prefix + "|" + suffix;
+        string s = prefix + "-" + suffix;
         return hashMap[s] - 1;
     }
 };
