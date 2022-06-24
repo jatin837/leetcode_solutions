@@ -10,7 +10,6 @@ public:
         else
           opq.push(ch);
       }
-      int ans = 0;
       for(char &ch:n){
         if((ch - '0')%2){
           ch = epq.top();
@@ -21,7 +20,6 @@ public:
           opq.pop();
         }
       }
-      cout<<n;
       return stoi(n);
     }
 };
