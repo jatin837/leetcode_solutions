@@ -7,10 +7,7 @@ class Solution {
       return a[0] == b[0] ? a[1] < b[1] : a[0] > b[0];
     });
     
-    for(auto p:people)
-      cout<<p[0]<<' '<<p[1]<<'\n';
-
-    for (const auto& p : people)
+    for (auto p:people)
       ans.insert(begin(ans) + p[1], p);
 
     return ans;
