@@ -13,34 +13,22 @@ class Solution {
 public:
     array<vector<TreeNode*>, 22> memo;
     vector<TreeNode*> allPossibleFBT(int n) {
-      if(n == 1){
-        TreeNode* root = new TreeNode(0);
-        return {root};
-      }
-      vector<TreeNode*> ans;
       if(n%2){
-        for(int i=1; i<n; i+=2){
-          vector<TreeNode*> ltree;
-          vector<TreeNode*> rtree;
-          if(memo[i].size())
-            ltree = memo[i];
-          else
-            ltree = allPossibleFBT(i);
-          if(memo[n-i-1].size())
-            rtree = memo[n-i-1];
-          else
-            rtree = allPossibleFBT(n-i-1);
-          for(auto lt:ltree){
-            for(auto rt:rtree){
-              TreeNode* root = new TreeNode(0);
-              root->left = lt;
-              root->right = rt;
-              ans.push_back(root);
-            }
+        vector<vector<TreeNode*>> dp(40);
+        TreeNode* root = new TreeNode(0);
+        dp[1] = {root};
+        for(int i=3; i<=n; i+=2){
+          int j = 1;
+          int k = i-2;
+          while(j < i and k > 0){
+            for(auto l:dp[j])
+              for(auto r:dp[k])
+                dp[i].push_back(new TreeNode(0, l, r));
+            k-=2;
+            j+=2;
           }
         }
-        memo[n] = ans;
-        return ans;
+        return dp[n];
       }
       return {};
     }
