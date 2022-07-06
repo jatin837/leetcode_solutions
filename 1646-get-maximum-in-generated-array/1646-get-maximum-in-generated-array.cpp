@@ -8,7 +8,7 @@ public:
       dp[1] = 1;
       int ans = 1;
       for(int i=2; i<=n; i++){
-        dp[i] = dp[i>>1] + int(i&1)*dp[(i>>1) + 1];
+        dp[i] = dp[i>>1] + int(i&1)*dp[1+i>>1];
         ans = max(ans, dp[i]);
       }
       return ans;
