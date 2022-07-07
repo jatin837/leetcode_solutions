@@ -22,11 +22,6 @@ public:
             dp[i][j] =  dp[i][j] or dp[i][j-1];
         }
       }
-      for(auto a:dp){
-        for(auto b:a)
-          cout<<b<<' ';
-        cout<<'\n';
-      }
       return dp[s1.length()][s2.length()];
     }
 };
