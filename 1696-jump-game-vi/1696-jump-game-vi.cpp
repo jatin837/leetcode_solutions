@@ -9,8 +9,6 @@ public:
         nums[i] += pq.top().first;
         pq.push({nums[i], i});
       }
-      for(int n:nums)
-        cout<<n<<' ';
       return nums.back();
     }
 };
