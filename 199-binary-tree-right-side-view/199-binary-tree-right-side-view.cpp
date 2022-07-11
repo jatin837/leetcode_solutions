@@ -13,7 +13,7 @@ class Solution {
 public:
     vector<int>ans;
     deque<TreeNode*> q;
-    void bfs(vector<TreeNode*>depth){
+    void bfs(vector<TreeNode*>&depth){
       vector<TreeNode*> next;
       for(auto node:depth){
         if(node->left)
@@ -27,16 +27,10 @@ public:
       }
     }
     vector<int> rightSideView(TreeNode* root) {
-     if(root)
-       ans.push_back(root->val);
-     else
-       return {};
-     vector<TreeNode*>init;
-     if(root->left)
-       init.push_back(root->left); 
-     if(root->right)
-       init.push_back(root->right); 
-     bfs(init); 
+      if(root){
+        vector<TreeNode*> init = {root};
+        bfs(init);
+      }
      return ans;
     }
 };
