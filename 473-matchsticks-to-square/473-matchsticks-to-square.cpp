@@ -14,16 +14,13 @@ public:
       }
       return false;
     }
-    static bool cmp(int &l, int &r){
-      return l>r;
-    }
     bool makesquare(vector<int>& matchsticks) {
       int sum = accumulate(begin(matchsticks), end(matchsticks), 0);
       if(sum%4!=0)
         return false;
       int sideLen = sum>>2;
       vector<int>sq(4, 0);
-      sort(begin(matchsticks), end(matchsticks), cmp);
+      sort(begin(matchsticks), end(matchsticks), [](int &l, int &r){ return l>r;});
       return dfs(matchsticks, 0, sideLen, sq);
     }
 };
