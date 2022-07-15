@@ -1,22 +1,20 @@
 class Solution {
 public:
     int dfs(int r, int c, int currArea, vector<vector<int>>&grid){
-      if(r<0 || r>=grid.size() || c<0 || c>=grid[0].size() || grid[r][c] == 0)
+      if(r<0 or r>=grid.size() or c<0 or c>=grid[0].size() or !grid[r][c])
         return 0;
       grid[r][c] = 0;
-      currArea = 1 + dfs(r-1, c, 0, grid);
+      currArea +=  dfs(r-1, c, 0, grid);
       currArea +=  dfs(r+1, c, 0, grid);
       currArea +=  dfs(r, c-1, 0, grid);
       currArea +=  dfs(r, c+1, 0, grid);
-      return currArea;
+      return currArea+1;
     }
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-      int rl = grid.size();
-      int cl = grid[0].size();
       int ans = 0;
-      for(int i=0; i<rl; i++)
-        for(int j=0; j<cl; j++)
-          if(grid[i][j] == 1)
+      for(int i=0; i<grid.size(); i++)
+        for(int j=0; j<grid[0].size(); j++)
+          if(grid[i][j])
             ans = max(ans, dfs(i, j, 0, grid));
       return ans;
     }
