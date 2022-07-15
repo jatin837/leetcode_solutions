@@ -7,23 +7,22 @@ public:
         matrix[r][i] = 0;
     }
     void setZeroes(vector<vector<int>>& matrix) {
-      vector<bool>x(matrix.size(), false);
-      vector<bool>y(matrix[0].size(), false);
+      unordered_set<int>x;
+      unordered_set<int>y;
       for(int i=0; i<matrix.size(); i++){
         for(int j=0; j<matrix[0].size(); j++){
           if(matrix[i][j])
             continue;
-          x[i] = true;
-          y[j] = true;
+          x.insert(i);
+          y.insert(j);
         }
       }
-      for(int i=0; i<x.size(); i++)
-        if(x[i])
-          for(int k=0; k<y.size(); k++)
-            matrix[i][k] = 0;
-      for(int i=0; i<y.size(); i++)
-        if(y[i])
-          for(int k=0; k<x.size(); k++)
-            matrix[k][i] = 0;
+      for(int i:x)
+        for(int j=0; j<matrix[0].size(); j++)
+          matrix[i][j] = 0;
+        
+      for(int i:y)
+        for(int j=0; j<matrix.size(); j++)
+          matrix[j][i] = 0;
     }
 };
