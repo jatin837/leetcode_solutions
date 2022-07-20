@@ -5,9 +5,8 @@ public:
         int n = nums.size();
         for(auto &q:queries) {
             vector<pair<string,int>> pq;
-            for(int i=0;i<n; i++) {
-                pq.push_back({(nums[i].substr(nums[i].size()-q[1])), i});
-            }
+            for(int i=0;i<n; i++)
+                pq.push_back({nums[i].substr(nums[i].size()-q[1]), i});
             sort(pq.begin(), pq.end());
             res.push_back(pq[q[0]-1].second);
         }
