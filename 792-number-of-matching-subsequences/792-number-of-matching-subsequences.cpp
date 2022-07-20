@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool isSubSeq(string s1, string s2){
+    bool isSubSeq(string &s1, string &s2){
       int i=0, j=0;
       while(i < s1.size() and j < s2.size()){
         if(s1[i] == s2[j]){ i++;j++;  }
@@ -13,9 +13,9 @@ public:
       int cnt = 0;
       for(string word:words)
         mp[word]++; 
-      for(auto it=mp.begin(); it!=mp.end(); it++){
-        if(isSubSeq(s, it->first))
-          cnt += it->second;
+      for(pair<string, int> it:mp){
+        if(isSubSeq(s, it.first))
+          cnt += it.second;
       }
       return cnt;
     }
