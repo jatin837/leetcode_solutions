@@ -1,15 +1,15 @@
 class Solution {
 public:
-  int shortestSequence(vector<int>& A, int k) {
-    int res = 1;
+  int shortestSequence(vector<int>& rolls, int k) {
+    int ans = 1;
     unordered_set<int> s;
-    for (int& a : A) {
-      s.insert(a);
+    for (int& roll : rolls) {
+      s.insert(roll);
       if (s.size() == k) {
-        res++;
+        ans++;
         s.clear();
       }
     }
-    return res;
+    return ans;
   }
 };
