@@ -14,7 +14,7 @@ class Solution:
         rh = self.lowestCommonAncestor(root.right, p, q)
         if lh and rh:
           return root
-        if(lh):
+        if lh:
           return lh
         return rh
       return None
