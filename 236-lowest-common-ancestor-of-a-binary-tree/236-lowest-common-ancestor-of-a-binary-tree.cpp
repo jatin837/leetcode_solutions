@@ -9,20 +9,16 @@
  */
 class Solution {
 public:
-    TreeNode* ans;
-    bool dfs(TreeNode* node, TreeNode* p, TreeNode* q){
-      if(node){
-        int l = dfs(node->left, p, q)?1:0;
-        int r = dfs(node->right, p, q)?1:0;
-        int m = (node == p or node == q)?1:0;
-        if(m+l+r >= 2)
-          this->ans = node;
-        return m+l+r>0;
-      }
-      return false;
-    }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-      dfs(root, p, q);
-      return ans;
+      if(root == nullptr)
+        return nullptr;
+      if(root == p or root == q)
+        return root;
+      TreeNode* lh = lowestCommonAncestor(root->left, p, q);
+      TreeNode* rh = lowestCommonAncestor(root->right, p, q);
+      if(lh and rh)
+        return root;
+      return lh?lh:rh;
+
     }
 };
