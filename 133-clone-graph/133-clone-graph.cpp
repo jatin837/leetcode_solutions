@@ -23,15 +23,15 @@ class Solution {
 public:
     Node* mp[101] = {nullptr};
     Node* cloneGraph(Node* node) {
-      if(!node)
-        return nullptr;
-      if(mp[node->val])
-        return mp[node->val];
-      Node* newNode = new Node(node->val);
-      mp[node->val] = newNode;
-      for(auto n:node->neighbors){
-        newNode->neighbors.push_back(cloneGraph(n));
+      if(node){
+        if(mp[node->val])
+          return mp[node->val];
+        Node* newNode = new Node(node->val);
+        mp[node->val] = newNode;
+        for(auto n:node->neighbors)
+          newNode->neighbors.push_back(cloneGraph(n));
+        return newNode;       
       }
-      return newNode;
+      return nullptr;
     }
 };
