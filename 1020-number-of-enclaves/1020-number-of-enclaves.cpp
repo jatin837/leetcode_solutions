@@ -3,13 +3,13 @@ public:
     int dfs(int i, int j, vector<vector<int>>& g){
       if(i<0 || j<0 || i==g.size() || j==g[0].size() || g[i][j]==0)
         return 0;
-      int ans = 0;
+      int ans = 1;
       g[i][j] = 0;
       ans += dfs(i-1, j, g);
       ans += dfs(i+1, j, g);
       ans += dfs(i, j-1, g);
       ans += dfs(i, j+1, g);
-      return 1+ans;
+      return ans;
     }
     int numEnclaves(vector<vector<int>>& grid) {
       for(int j=0; j<grid[0].size(); j++){
