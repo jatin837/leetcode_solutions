@@ -3,8 +3,8 @@ public:
     int dfs(int i, int j, vector<vector<int>>& g){
       if(i<0 || j<0 || i==g.size() || j==g[0].size() || g[i][j]==0)
         return 0;
-      int ans = 1;
       g[i][j] = 0;
+      int ans = 1;
       ans += dfs(i-1, j, g);
       ans += dfs(i+1, j, g);
       ans += dfs(i, j-1, g);
