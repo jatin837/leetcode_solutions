@@ -4,8 +4,7 @@ class Solution {
 public:
     vector<pair<int, int>> dd = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     vector<vector<int>> pacificAtlantic(G& g) {
-      queue<Pi>qA;
-      queue<Pi>qP;
+      queue<Pi>qA, qP;
       vector<vector<int>>ans;
       int r = g.size(), c = g[0].size();
       for(int i=0; i<r; i++){
@@ -30,12 +29,11 @@ public:
         auto [x, y] = q.front();
         q.pop();
         visited[x][y] = true;
-        int prev = g[x][y];
-        for(auto [dx, dy]:dd){
-          if(x+dx < 0 || y+dy < 0 || x+dx >= g.size() || y+dy >= g[0].size() || visited[x+dx][y+dy] || g[x+dx][y+dy] < prev)
+        for(auto [dx, dy]:dd)
+          if(x+dx < 0 || y+dy < 0 || x+dx >= g.size() || y+dy >= g[0].size() || visited[x+dx][y+dy] || g[x+dx][y+dy] < g[x][y])
             continue;
-          q.push({x+dx, y+dy});
-        }
+          else
+            q.push({x+dx, y+dy});
       }
     }
 };
