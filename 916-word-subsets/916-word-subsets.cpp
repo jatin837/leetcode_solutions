@@ -1,27 +1,25 @@
 class Solution {
 public:
-    bool isSuperSet(unordered_map<char, int>& mp1, unordered_map<char, int>& mp2){
-      for(auto [ch,fq]:mp2){
-        if(mp1[ch]<fq)
+    bool isSuperSet(int A[26], int B[26]){
+      for(int i=0; i<26; i++){
+        if(B[i] > A[i])
           return false;
       }
       return true;
     }
     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
-      unordered_map<char, int>mp1;
+      int B[26] = {0};
       for(string word:words2){
-        unordered_map<char, int>mp2;
+        int tmp[26]={0};
         for(char ch:word)
-          mp2[ch]++;
-        for(auto [ch, fq]:mp2)
-          mp1[ch] = max(mp1[ch], fq);
+          B[ch-'a'] = max(B[ch-'a'], ++tmp[ch-'a']);
       }
       vector<string>ans;
       for(string word:words1){
-        unordered_map<char, int>mp2;
+        int A[26] = {0};
         for(char ch:word)
-          mp2[ch]++;
-        if(isSuperSet(mp2, mp1))
+          A[ch-'a']++;
+        if(isSuperSet(A, B))
           ans.push_back(word);
       }
       return ans;
