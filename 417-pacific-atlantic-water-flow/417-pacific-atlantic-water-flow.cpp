@@ -24,7 +24,7 @@ public:
             ans.push_back({i, j});
       return ans;
     }
-    void bfs(queue<Pi>& q, G& g, bool visited[200][200]){
+    void bfs(queue<Pi>& q, G& g, bool visited[][200]){
       while(!q.empty()){
         auto [x, y] = q.front();
         q.pop();
