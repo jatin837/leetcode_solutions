@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minSwap(vector<int>& n1, vector<int>& n2) {
-      vector<int>swp(n1.size(), INT_MAX), nswp(n1.size(), INT_MAX);
+      vector<int>swp(n1.size(), n1.size()), nswp(n1.size(), n1.size());
       swp[0]=1;
       nswp[0]=0;
       for(int i=1; i<n1.size(); i++){
