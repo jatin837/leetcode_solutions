@@ -19,10 +19,8 @@ public:
           if(x < 0 || y < 0 || x >= M.size() || y >= M[0].size() || dist[x][y] != -1)
             continue;
           dist[x][y] = curr;
-          tmp.push({x-1, y});
-          tmp.push({x+1, y});
-          tmp.push({x, y-1});
-          tmp.push({x, y+1});
+          for(auto [dx, dy]:dd)
+            tmp.push({x+dx, y+dy});
         }
         curr++;
         q = tmp;
