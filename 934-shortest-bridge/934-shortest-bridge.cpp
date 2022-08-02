@@ -18,14 +18,11 @@ public:
   }
   int shortestBridge(vector<vector<int>>& A) {
     bool found = false;
-    for(int i=0; i<A.size(); i++){
-      if(found)
-        break;
-      for(int j=0; j<A[0].size(); j++){
+    for(int i=0; !found && i<A.size(); i++){
+      for(int j=0; !found && j<A[0].size(); j++){
         if(A[i][j]){
           paint(A, i, j);
           found = true;
-          break;
         }
       }
     }
