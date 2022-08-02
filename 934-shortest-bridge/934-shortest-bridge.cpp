@@ -26,11 +26,16 @@ public:
         }
       }
     }
-    for (int cl = 2; ; ++cl)
-      for (int i = 0; i < A.size(); ++i)
-        for (int j = 0; j < A.size(); ++j) 
+    found = false;
+    int cl = 2;
+    while(!found){
+      for (int i = 0;!found && i < A.size(); ++i)
+        for (int j = 0; !found && j < A.size(); ++j) 
           if (A[i][j] == cl && ((expand(A, i - 1, j, cl) || expand(A, i, j - 1, cl) || 
             expand(A, i + 1, j, cl) || expand(A, i, j + 1, cl))))
-              return cl - 2;
+            found = true;
+      cl++;
+    }
+    return cl-3;
   }
 };
