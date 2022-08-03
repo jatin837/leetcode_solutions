@@ -1,19 +1,19 @@
 class MyCalendar {
+    set<pair<int, int>> books;
 public:
-    vector<pair<int, int>>cal;
-    MyCalendar() {}
-    bool book(int start, int end) {
-      for(auto [s, e]:this->cal){
-        if(start < e && end > s)
+    bool book(int s, int e) {
+        auto next = books.lower_bound({s, e});
+        if (next != books.end() && next->first < e)
           return false;
-      }
-      this->cal.push_back({start, end});
-      return true;
+        if (next != books.begin() && s < (--next)->second)
+          return false;
+        books.insert({ s, e });
+        return true;
     }
 };
 
 /**
- * Your MyCalendar object will be instantiated and called as such:
- * MyCalendar* obj = new MyCalendar();
- * bool param_1 = obj->book(start,end);
- */
+* Your MyCalendar object will be instantiated and called as such:
+* MyCalendar* obj = new MyCalendar();
+* bool param_1 = obj->book(start,end);
+*/
