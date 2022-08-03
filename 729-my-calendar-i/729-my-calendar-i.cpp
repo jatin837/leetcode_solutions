@@ -4,7 +4,7 @@ public:
     MyCalendar() {}
     bool book(int start, int end) {
       for(auto [s, e]:this->cal){
-        if(s < end && e > start)
+        if(start < e && end > s)
           return false;
       }
       this->cal.push_back({start, end});
