@@ -1,7 +1,7 @@
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>&M , int k) {
-      int b = M[0][0], e = M.back().back();
+      int b = *M.begin()->begin(), e = M.back().back();
       int ans = -1;
       while(b<=e){
         long long m = (b+e)>>1;
