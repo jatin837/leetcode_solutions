@@ -8,10 +8,10 @@ public:
         int smlCnt = 0;
         for(int i=0; i<M.size(); i++)
           smlCnt += upper_bound(M[i].begin(), M[i].end(), m)-M[i].begin();
-          if (smlCnt < k)
-            b = m+1;
-          else
-            e=m-1;
+        if (smlCnt < k)
+          b=m+1;
+        else
+          e=m-1;
       }
       return b;
     }
