@@ -2,7 +2,7 @@ class Solution {
 public:
     int findKthNumber(int m, int n, int k) {
       int s = 1, e = m*n;
-      while(s<e){
+      while(s<=e){
         long long mid = (s + e)>>1;
         int smlCnt = 0;
         for(int i=1; i<=m; i++)
@@ -10,7 +10,7 @@ public:
         if(smlCnt < k)
           s = mid+1;
         else
-          e = mid;
+          e = mid-1;
       }
       return s;
     }
