@@ -3,7 +3,6 @@ public:
     int countVowelPermutation(int n) {
       long long dp[20000][5] = {{1, 1, 1, 1, 1}}; 
       long long mod = 1e9+7;
-      cout<<dp[0][3];
       int ans;
       for(int i=1; i<n; i++){
         dp[i][0] = (dp[i-1][1] + dp[i-1][2] + dp[i-1][4])%mod;
