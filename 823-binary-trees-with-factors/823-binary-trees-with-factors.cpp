@@ -10,10 +10,10 @@ public:
         indx[arr[i]] = i+1;
       for(int i=0; i<N; i++){
         for(int j=0; j<i; j++){
-          if(arr[i]%arr[j] == 0){
+          if(arr[i]%arr[j] == 0 && indx[arr[i]/arr[j]]){
+            int lidx = j;
             int ridx = indx[arr[i]/arr[j]];
-            if(ridx)
-              dp[i] = (dp[i] + dp[j] * dp[ridx-1])%MOD;
+            dp[i] = (dp[i] + dp[j] * dp[ridx-1])%MOD;
           }
         }
       }
