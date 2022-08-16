@@ -1,16 +1,27 @@
+#define MAX_SUM 20001
+#define MAX_NUM 201
+
 class Solution {
 public:
-    int memo[20001][201];
-    bool dp(int sum, int pos, vector<int>&A){
-      if(sum == 0)
-        return true;
-      if(sum < 0 || pos == 0)
-        return false;
-      if(memo[sum][pos]==0){
-        memo[sum][pos] = 1; 
-        memo[sum][pos] += dp(sum-A[pos-1], pos-1, A) || dp(sum, pos-1, A);
+    bool dp(int target, int pos, vector<int>&A){
+      bool memo[MAX_SUM][MAX_NUM];
+      bool ans = false;
+      for(int i=0; i<=A.size(); i++)
+        memo[0][i]=true;
+      for(int sum = 1; sum <= target; sum++){
+        ans = false;
+        for(int i=0; i<A.size(); i++){
+          bool include, exclude;
+          exclude = memo[sum][i];
+          if(sum-A[i] < 0)
+            include = false;
+          else
+            include = memo[sum-A[i]][i];
+          memo[sum][i+1] = include || exclude;
+          ans = ans or memo[sum][i+1];
+        }
       }
-      return memo[sum][pos]==2;
+      return ans;
     }
     bool canPartition(vector<int>& nums) {
       int target = accumulate(nums.begin(), nums.end(), 0);
