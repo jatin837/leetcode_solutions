@@ -1,18 +1,15 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>&rooms, vector<bool>&visited, int node){
-      if(visited[node])
+    void dfs(vector<vector<int>>&rooms, unordered_set<int>&visited, int node){
+      if(visited.count(node))
         return;
-      visited[node]=true;
+      visited.insert(node);
       for(auto n:rooms[node])
         dfs(rooms, visited, n);
     }
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
-      vector<bool>visited(rooms.size());
+      unordered_set<int>visited;
       dfs(rooms, visited, 0);
-      for(int i=0; i<visited.size(); i++)
-        if(!visited[i])
-          return false;
-      return true;
+      return visited.size() == rooms.size();
     }
 };
