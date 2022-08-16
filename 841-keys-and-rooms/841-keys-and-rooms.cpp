@@ -1,7 +1,7 @@
 class Solution {
 public:
     void dfs(vector<vector<int>>&rooms, vector<bool>&visited, int node){
-      if(visited[node] || node == rooms.size())
+      if(visited[node])
         return;
       visited[node]=true;
       for(auto n:rooms[node])
