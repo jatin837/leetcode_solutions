@@ -8,9 +8,6 @@ public:
         queue<vector<int>>q2;
         while(!q.empty()){
           auto top = q.front();
-          for(int n:top)
-            cout<<n<<' ';
-          cout<<'\n';
           q.pop();
           int currNode = top.back();
           if(currNode == graph.size()-1)
