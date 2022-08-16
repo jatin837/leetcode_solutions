@@ -11,12 +11,7 @@ public:
       for(int sum = 1; sum <= target; sum++){
         ans = false;
         for(int i=0; i<A.size(); i++){
-          bool include, exclude;
-          exclude = memo[sum][i];
-          if(sum-A[i] < 0)
-            include = false;
-          else
-            include = memo[sum-A[i]][i];
+          bool include = (sum-A[i]<0)?false:memo[sum-A[i]][i], exclude=memo[sum][i];
           memo[sum][i+1] = include || exclude;
           ans = ans or memo[sum][i+1];
         }
