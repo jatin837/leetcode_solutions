@@ -1,5 +1,3 @@
-#define G vector<vector<int>>
-#define P pair<int, int>
 class Solution {
 public:
 vector<pair<int, int>> dd = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
