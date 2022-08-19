@@ -6,23 +6,22 @@ public:
         left[n]++;
       for(int i=0; i<nums.size(); i++){
         int currNum = nums[i];
-        cout<<i<<'\n';
-        if(left[currNum]==0)
-          continue;
-        if(need[currNum]){
-          need[currNum]--;
-          left[currNum]--;
-          need[currNum+1]++;
-          continue;
+        if(left[currNum]){
+          if(need[currNum]){
+            need[currNum]--;
+            left[currNum]--;
+            need[currNum+1]++;
+            continue;
+          }
+          if(left[currNum+1] && left[currNum+2]){
+            left[currNum]--;
+            left[currNum+1]--;
+            left[currNum+2]--;
+            need[currNum+3]++;
+            continue;
+          }
+          return false;         
         }
-        if(left[currNum+1] && left[currNum+2]){
-          left[currNum]--;
-          left[currNum+1]--;
-          left[currNum+2]--;
-          need[currNum+3]++;
-          continue;
-        }
-        return false;
       }
       return true;
     }
