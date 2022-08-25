@@ -1,13 +1,13 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-      unordered_map<char, int>given, required;
+      int given[26]={0}, required[26]={0};
       for(auto ch:magazine)
-        given[ch]++;
+        given[ch-'a']++;
       for(char ch:ransomNote){
-        if(given[ch] <= required[ch])
+        if(given[ch-'a'] <= required[ch-'a'])
           return false;
-        required[ch]++;
+        required[ch-'a']++;
       }
       return true;
     }
