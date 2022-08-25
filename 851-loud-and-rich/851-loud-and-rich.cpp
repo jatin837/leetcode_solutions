@@ -17,10 +17,8 @@ public:
       vector<int>ret(quiet.size(), quiet.size());
       for(auto v:richer)
         Graph[v[1]].push_back(v[0]);
-      for(int i=0; i<quiet.size(); i++){
-        if(ret[i] == quiet.size())
-          ret[i] = dfs(Graph, i, quiet, ret);
-      }
+      for(int i=0; i<quiet.size(); i++)
+        ret[i] = dfs(Graph, i, quiet, ret);
       return ret;
     }
 };
