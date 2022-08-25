@@ -9,7 +9,8 @@ public:
         if(q[pos] < q[ans])
           ans = pos;
       }
-      return memo[i] = ans;
+      memo[i] = ans;
+      return ans;
     }
     vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {
       vector<vector<int>>Graph(quiet.size());
