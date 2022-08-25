@@ -3,14 +3,11 @@ public:
     int dfs(vector<vector<int>>&G, int i, vector<int>&q, vector<int>&memo){
       if(memo[i] != q.size())
         return memo[i];
-      int ans = i;
-      for(int child:G[i]){
-        int pos = dfs(G, child, q, memo);
-        if(q[pos] < q[ans])
-          ans = pos;
-      }
-      memo[i] = ans;
-      return ans;
+      memo[i] = i;
+      for(int child:G[i])
+        if(q[dfs(G, child, q, memo)] < q[memo[i]])
+          memo[i] = dfs(G, child, q, memo);
+      return memo[i];
     }
     vector<int> loudAndRich(vector<vector<int>>& r, vector<int>& q) {
       vector<vector<int>>G(q.size());
