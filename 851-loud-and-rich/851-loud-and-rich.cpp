@@ -12,13 +12,13 @@ public:
       memo[i] = ans;
       return ans;
     }
-    vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {
-      vector<vector<int>>Graph(quiet.size());
-      vector<int>ret(quiet.size(), quiet.size());
-      for(auto v:richer)
-        Graph[v[1]].push_back(v[0]);
-      for(int i=0; i<quiet.size(); i++)
-        ret[i] = dfs(Graph, i, quiet, ret);
+    vector<int> loudAndRich(vector<vector<int>>& r, vector<int>& q) {
+      vector<vector<int>>G(q.size());
+      vector<int>ret(q.size(), q.size());
+      for(auto v:r)
+        G[v[1]].push_back(v[0]);
+      for(int i=0; i<q.size(); i++)
+        ret[i] = dfs(G, i, q, ret);
       return ret;
     }
 };
