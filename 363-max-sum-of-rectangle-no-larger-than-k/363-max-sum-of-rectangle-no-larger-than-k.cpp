@@ -22,12 +22,12 @@ public:
       int ret = INT_MIN;
       for(int i=0; i<v.size(); i++){
         sum += v[i];
+        if(sum == k)
+          return k;
         auto indx = st.lower_bound(sum-k);
         if(indx != st.end())
           ret = max(ret, sum - *indx);
         st.insert(sum);
-        if(sum == k)
-          return k;
       }
       return ret;
     }
