@@ -32,13 +32,12 @@ public:
     int maxSumSubmatrix(vector<vector<int>>& M, int k) {
       prefix(M);
       int ans = INT_MIN;
-      for(int i=0; i<M.size(); i++){
-        for(int j=0; j<=i; j++){
-          ans = max(ans, solve(M, i, j, k));
+      for(int i=0; i<M.size(); i++)
+        for(int j=0; j<=i; j++)
           if(ans == k)
-            return k;
-        }
-      }
+            return ans;
+          else
+            ans = max(ans, solve(M, i, j, k));
       return ans;
     }
 };
