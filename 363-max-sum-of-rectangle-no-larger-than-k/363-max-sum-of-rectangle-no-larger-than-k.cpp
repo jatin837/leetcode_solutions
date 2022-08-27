@@ -29,7 +29,7 @@ public:
       }
       return ret;
     }
-    int maxSumSubmatrix(vector<vector<int>>& M, int k) {
+    int maxSumSubmatrix(vector<vector<int>>&M, int k) {
       prefix(M);
       int ans = INT_MIN;
       for(int i=0; i<M.size(); i++)
