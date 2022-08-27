@@ -26,6 +26,8 @@ public:
         if(indx != st.end())
           ret = max(ret, sum - *indx);
         st.insert(sum);
+        if(sum == k)
+          return k;
       }
       return ret;
     }
