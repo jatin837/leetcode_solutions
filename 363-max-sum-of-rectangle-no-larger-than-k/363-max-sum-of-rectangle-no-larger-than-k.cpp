@@ -1,17 +1,20 @@
 class Solution {
 public:
+    //compute the prefix along row
     void prefix(vector<vector<int>>&M){
       int r = M.size(), c = M[0].size();
       for(int i=1; i<r; i++)
         for(int j=0; j<c; j++)
           M[i][j] += M[i-1][j];     
     }
+    //compress matrix vertically
     vector<int> compress(vector<vector<int>>&M, int r2, int r1){
       vector<int>v(M[0].size());
       for(int i=0; i<M[0].size(); i++)
         v[i] = (r1==0)?M[r2][i]:M[r2][i]-M[r1-1][i];
       return v;
     }
+    // main algorithm
     int solve(vector<int>v, int k){
       set<int>st;
       st.insert(0);
@@ -34,6 +37,8 @@ public:
         for(int j=0; j<=i; j++){
           vector<int>compressed = compress(M, i, j);
           ans = max(ans, solve(compressed, k));
+          if(ans == k)
+            return k;
         }
       }
       return ans;
