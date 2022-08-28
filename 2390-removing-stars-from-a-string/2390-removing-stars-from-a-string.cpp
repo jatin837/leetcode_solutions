@@ -21,12 +21,13 @@ public:
         for(auto c: s){
             if(c == '*'){
                 st.pop();
+                continue;
             }else st.push(c);
         }
-        int i = st.size()-1;
-        string ans(st.size(), '*');
+        string ans(st.size(), 'x');
+        int i=st.size();
         while(!st.empty()){
-            ans[i--] = st.top();
+            ans[--i] = st.top();
             st.pop();
         }
         return ans;
