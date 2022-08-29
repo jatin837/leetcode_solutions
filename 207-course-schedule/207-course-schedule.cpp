@@ -15,9 +15,6 @@ public:
     for(int i=0; i<numCourses; i++)
       if(degree[i] == 0)
         q.push(i);
-//  for(int n:degree)
-//    cout<<n<<' ';
-//  cout<<'\n';
     if(q.size()==0)
       return false;
     while(!q.empty()){
