@@ -4,19 +4,18 @@ public:
       int b = 0;
       int e = 0;
       int ans = 0;
-      vector<long long>pre(chargeTimes.size()+1, 0);
+      long long sum = 0;
       priority_queue<pair<int, int>>pq;
-      for(int i=0; i<chargeTimes.size(); i++)
-        pre[i+1] = pre[i] + runningCosts[i];
       while(e < runningCosts.size()){
+        sum += runningCosts[e];
         pq.push({chargeTimes[e], e});
         while(pq.top().second < b)
           pq.pop();
         int currMax = pq.top().first;
-        if(currMax+(e-b+1)*(pre[e+1]-pre[b]) <= budget)
+        if(currMax+(e-b+1)*sum <= budget)
           ans = max(ans, e-b+1); 
         else
-          b++;
+          sum -= runningCosts[b++];
         e++;
       }
       return ans;
