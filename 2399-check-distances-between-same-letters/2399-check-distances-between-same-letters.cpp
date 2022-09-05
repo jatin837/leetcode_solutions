@@ -1,16 +1,15 @@
 class Solution {
 public:
-    bool checkDistances(string s, vector<int>& distance) {
-      int mp[26] = {0};
+    bool checkDistances(string s, vector<int>& d) {
+      unordered_set<int>visited;
       for(int i=0; i<s.length(); i++){
-        char ch = s[i];
-        if(mp[ch-'a']==0){
-          mp[ch-'a']=i+1;
+        if(visited.count(i))
           continue;
-        }
-        int dist = i-mp[ch-'a'];
-        if(distance[ch-'a'] != dist)
+        char ch = s[i];
+        int nidx = i + d[ch-'a']+1;
+        if(nidx >= s.length() || s[nidx] != ch)
           return false;
+        visited.insert(nidx);
       }
       return true;
     }
