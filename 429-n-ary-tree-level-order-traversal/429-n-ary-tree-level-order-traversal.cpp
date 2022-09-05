@@ -28,17 +28,16 @@ public:
       while(curr.size()){
         queue<Node*>next;
         ret.push_back({});
-        while(curr.size()){
+        int sz = curr.size();
+        while(sz--){
           Node* top = curr.front();
           ret.back().push_back(top->val);
           curr.pop();
           for(auto child:top->children)
-            next.push(child);
+            curr.push(child);
         }
-        curr = next;
       }  
     }
-    
     return ret;
   }
 };
