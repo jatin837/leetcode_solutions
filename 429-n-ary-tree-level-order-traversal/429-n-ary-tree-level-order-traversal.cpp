@@ -38,6 +38,7 @@ public:
         curr = next;
       }  
     }
+    
     return ret;
   }
 };
