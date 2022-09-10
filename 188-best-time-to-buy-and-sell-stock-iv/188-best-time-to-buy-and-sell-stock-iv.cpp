@@ -2,7 +2,7 @@
 class Solution {
 public:
     int maxProfit(int K, vector<int>& prices) {
-      vector<vector<int>>dp(K+1, vector<int>(prices.size(), 0));
+      int dp[101][1001] = {0};
       int ans = 0;
       for(int k=1; k<=K; k++){
         for(int i=1; i<prices.size(); i++){
