@@ -17,11 +17,6 @@ public:
           ans = max(dp[k][i], ans);
         }
       }
-      for(auto n:dp){
-        for(int p:n)
-          cout<<p<<' ';
-        cout<<'\n';
-      }
       return ans;
     }
 };
