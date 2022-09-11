@@ -10,14 +10,15 @@ public:
       long long ans = 0;
       long long totSpeed = 0;
       for(auto [eff, sp]:effsp){
+        ans = max(ans, (totSpeed + sp)*eff);
         totSpeed += sp;
         pq.push(sp);
-        if(pq.size() > k){
+        if(pq.size() > k-1){
           totSpeed -= pq.top();
           pq.pop();
         }
-        ans = max(ans, totSpeed*eff);
       }
+      ans = max(ans, (totSpeed + effsp.back().second)*effsp.back().first);
       return ans%mod;
     }
 };
