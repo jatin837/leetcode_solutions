@@ -1,24 +1,18 @@
 class Solution {
 public:
-    int rec(int i,int l,int h,vector<int>&nums,vector<int>&m,vector<vector<int>>&dp){
-        if(i>=m.size()){
-            return 0;
-        }
-        if(l>h){
-            return 0;
-        }
-        if(dp[i][l]!=-1001)
-            return dp[i][l];
-        
-        int take=rec(i+1,l+1,h,nums,m,dp)+nums[l]*m[i];
-        int notTake=rec(i+1,l,h-1,nums,m,dp)+nums[h]*m[i];
-        
-        return dp[i][l]=max(take,notTake);
+    int dfs(int left, int ops, vector<int>&N, vector<int>&M, vector<vector<int>>&memo){
+      if(ops == M.size())
+        return 0;
+      if(memo[left][ops] == INT_MIN){
+        int i = left, j = N.size()-1-(ops-left);
+        int sl = N[i]*M[ops] + dfs(left+1, ops+1, N, M, memo);
+        int sr = N[j]*M[ops] + dfs(left, ops+1, N, M, memo);
+        memo[left][ops] = max(sl, sr);
+      }
+      return memo[left][ops];
     }
-    int maximumScore(vector<int>& nums, vector<int>& m) {
-        int n=nums.size();
-        vector<vector<int>>dp(m.size(),vector<int>(m.size(),-1001));
-        return rec(0,0,n-1,nums,m,dp);
+    int maximumScore(vector<int>& nums, vector<int>& multipliers) {
+      vector<vector<int>>memo(1001, vector<int>(1001, INT_MIN));
+      return dfs(0, 0, nums, multipliers, memo);
     }
 };
-
