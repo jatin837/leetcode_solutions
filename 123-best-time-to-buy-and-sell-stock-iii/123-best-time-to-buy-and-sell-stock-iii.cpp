@@ -14,15 +14,8 @@ public:
       right[i] = max(right[i+1], maxSoFar-prices[i]);
     }
     int ret = 0;
-/// for(int n:left)
-///   cout<<n<<' ';
-/// cout<<'\n';
-/// for(int n:right)
-///   cout<<n<<' ';
-/// cout<<'\n';
-    for(int i=0; i<prices.size(); i++){
+    for(int i=0; i<prices.size(); i++)
       ret = max(ret, right[i]+left[i]);
-    }
     return ret;
   }
 };
