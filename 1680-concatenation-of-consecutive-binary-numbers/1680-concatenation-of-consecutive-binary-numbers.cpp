@@ -5,7 +5,7 @@ public:
     int shift = 0;
     int MOD = 1e9+7;
     for(int i=1; i<=n; i++){
-      if(__builtin_popcount(i) == 1)
+      if((i&(i-1))==0)
         shift++;
       ret = ((ret<<shift)|i)%MOD;
     }
