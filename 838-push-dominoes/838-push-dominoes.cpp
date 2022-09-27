@@ -24,8 +24,9 @@ public:
             ans[p+1] = 'R';
             q.push(p+1);
           }         
-          if(p+2>=dominoes.size())
+          if(p+2>=dominoes.size()){
             ans[p+1] = 'R';
+          }
         }
       }
       dominoes = ans;
