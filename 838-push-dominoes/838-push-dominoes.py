@@ -18,4 +18,4 @@ class Solution:
             tmp[top+1] = 'R'
             q.append(top+1);
       dominoes = ''.join(tmp)
-    return dominoes;
+    return dominoes
