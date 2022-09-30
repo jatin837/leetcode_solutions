@@ -7,7 +7,7 @@ public:
     active.insert(0);
     for(int i=0; i<buildings.size(); i++)
       pts.push_back({buildings[i][0],-buildings[i][2]}), 
-                     pts.push_back({buildings[i][1], buildings[i][2]});
+      pts.push_back({buildings[i][1], buildings[i][2]});
 
     sort(pts.begin(), pts.end());
     int prev = 0;
