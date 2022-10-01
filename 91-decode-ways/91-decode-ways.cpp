@@ -36,12 +36,6 @@ public:
         else
           dp[1] = 1;
       }
-      
-      for(int d:dp){
-        cout<<d<<' ';
-      }
-      cout<<'\n';     
-      
       for(int i=2; i<n; i++){
         if (s[i] == '0'){
           if (s[i-1] == '1' or s[i-1] == '2')
@@ -64,10 +58,6 @@ public:
             dp[i] = dp[i-1];
         }
       }
-      for(int d:dp){
-        cout<<d<<' ';
-      }
-      cout<<'\n';
       return dp[n-1];
     }
 };
