@@ -1,23 +1,16 @@
 class Solution {
 public:
   int numDecodings(string s) {
-    vector<int>memo(s.length()+1, -1);
-    return dp(s, 0, memo);
-  }
-  int dp(string &s, int pos, vector<int>&memo){
-    if(pos == s.length())
-      return 1;
-    if(s[pos] == '0')
-      return 0;
-    if(memo[pos] == -1){
-      int ret = dp(s, pos+1, memo);
-      if(pos+1<s.length()){
-        if((s[pos] == '1') || (s[pos] == '2' && s[pos+1] <= '6'))
-          ret += dp(s, pos+2, memo);
-      }
-      memo[pos] = ret;
+    vector<int>dp(s.length()+1, 0);
+    dp[s.length()] = 1;
+    for(int i=s.length()-1; i>=0; i--){
+      if(s[i] == '0')
+        continue;
+      dp[i] = dp[i+1];
+      if(i+2 < dp.size())
+        if(i+2 < dp.size() && (s[i] == '1' or (s[i] == '2' && s[i+1] <= '6')))
+          dp[i] += dp[i+2];
     }
-
-    return memo[pos];
+    return dp[0];
   }
 };
