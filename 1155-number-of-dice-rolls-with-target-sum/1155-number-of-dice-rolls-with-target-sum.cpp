@@ -1,20 +1,22 @@
 class Solution {
 public:
-  int memo[31][1001];
   int numRollsToTarget(int n, int K, int target) {
-    memset(memo, -1, sizeof(memo));
-    return solve(n, K, target);
+    vector<vector<int>>memo(n+1, vector<int>(target+1, -1));
+    return numRollsToTarget(n, K, target, memo);
   }
-  int solve(int n, int K, int target){
+  int numRollsToTarget(int n, int K, int target, vector<vector<int>>&memo){
     int mod = 1e9+7;
     if(n == 1 && target > K)
       return 0;
     if(n == 1 && target <= K)
       return 1;
     if(memo[n][target] == -1){
-      memo[n][target]=0;
+      int ret = 0;
+      
       for(int i=1; i<= min(K, target-1); i++)
-        memo[n][target] = (memo[n][target] + solve(n-1, K, target-i))%mod;
+       ret = (ret + numRollsToTarget(n-1, K, target-i, memo))%mod;
+      
+      memo[n][target] = ret;     
     }
     return memo[n][target]; 
   }
