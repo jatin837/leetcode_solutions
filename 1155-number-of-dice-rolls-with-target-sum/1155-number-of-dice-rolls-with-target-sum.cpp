@@ -12,10 +12,11 @@ public:
     if(n == 1 && target <= K)
       return 1;
     if(memo[n][target] == -1){
-      memo[n][target]=0;
+      int ret = 0;
       for(int i=1; i<= min(K, target-1); i++)
-        memo[n][target] = (memo[n][target] + solve(n-1, K, target-i))%mod;
+        ret = (ret + solve(n-1, K, target-i))%mod;
+      memo[n][target] = ret;
     }
-    return memo[n][target]; 
+    return memo[n][target];
   }
 };
