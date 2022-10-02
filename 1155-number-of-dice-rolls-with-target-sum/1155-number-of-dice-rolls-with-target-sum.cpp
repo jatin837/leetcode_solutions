@@ -14,7 +14,7 @@ public:
     if(memo[n][target] == -1){
       memo[n][target]=0;
       for(int i=1; i<= min(K, target-1); i++)
-        memo[n][target] = (memo[n][target]%mod + solve(n-1, K, target-i)%mod)%mod;
+        memo[n][target] = (memo[n][target] + solve(n-1, K, target-i))%mod;
     }
     return memo[n][target]; 
   }
