@@ -1,7 +1,6 @@
 class MyCalendarThree {
 public:
     map<int, int>diff;
-    MyCalendarThree() {}
     int book(int start, int end) {
       this->diff[start]++;
       this->diff[end]--;
