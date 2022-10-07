@@ -1,14 +1,18 @@
 class MyCalendar {
-    set<pair<int, int>> books;
+  map<int, int> diff;
 public:
     bool book(int s, int e) {
-        auto next = books.lower_bound({s, e});
-        if (next != books.end() && e > next->first)
+      diff[s]++;diff[e]--;
+      int curr = 0;
+      for(auto [t, cnt]:diff){
+        if(curr+cnt >= 2){
+          diff[s]--;
+          diff[e]++;
           return false;
-        if (next != books.begin() && s < (--next)->second)
-          return false;
-        books.insert({s, e});
-        return true;
+        }
+        curr += cnt;
+      }
+      return true;
     }
 };
 
