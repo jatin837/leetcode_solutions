@@ -2,13 +2,15 @@ class Solution {
 public:
     string say(string res){
       string ans = "";
-      for(int i=0; i<res.length(); i++){
+      int i=0;
+      while(i < res.length()){
         int cnt = 1;
         while(i+1<res.length() and res[i] == res[i+1]){
           cnt++;
           i++;
         }
         ans += to_string(cnt) + res[i]; 
+        i++;
       }
       return ans;
     }
