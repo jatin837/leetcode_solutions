@@ -3,9 +3,9 @@ public:
     vector<string> topKFrequent(vector<string>& words, int k) {
         unordered_map<string, int> hashmap;
         for(string& word : words) {
-            hashmap[word] += 1;
+            hashmap[word] -= 1;
         }
-        priority_queue<pair<int, string>, vector<pair<int, string>>, MyComp> pq;
+        priority_queue<pair<int, string>> pq;
         for(auto [word, cnt]:hashmap) {
             pq.push({cnt, word});
             if(pq.size() > k) 
