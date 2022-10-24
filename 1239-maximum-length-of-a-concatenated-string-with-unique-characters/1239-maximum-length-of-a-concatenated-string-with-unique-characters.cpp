@@ -1,25 +1,25 @@
 class Solution {
 public:
   int ret = 0;
-  void dfs(vector<string>& arr, int pos, unordered_set<char> curr){
+  void dfs(vector<string>& arr, int pos, int curr){
     if(pos == arr.size()){
-      if(curr.size() > ret)
-        ret = curr.size();
+      if(__builtin_popcount(curr) > ret)
+        ret = __builtin_popcount(curr);
       return;
     }
-    unordered_set<char>next(curr.begin(), curr.end());
+    int next = curr;
     for(auto ch:arr[pos]){
-      if(next.count(ch)){
+      if((next&(1<<(ch-'a')))){
         dfs(arr, pos+1, curr);
         return;
       }
-      next.insert(ch);
+      next |= 1<<(ch-'a');
     }
     dfs(arr, pos+1, curr);
     dfs(arr, pos+1, next);
   }
   int maxLength(vector<string>& arr) {
-    dfs(arr, 0, {});
+    dfs(arr, 0, 0);
     return ret;
   }
 };
