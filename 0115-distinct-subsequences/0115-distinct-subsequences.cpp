@@ -1,6 +1,6 @@
 class Solution {
 public:
-  unsigned long long memo[1001][1001];
+  unsigned memo[1001][1001];
   int numDistinct(string s, string t) {
     memset(memo, 0, sizeof(memo));
     for(int i=0; i<=t.size(); i++)
