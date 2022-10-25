@@ -1,19 +1,18 @@
 class Solution {
 public:
-  int memo[1001][1001];
-  int dp(string& s, string& t, int i, int j){
-    if(j == -1)
-      return 1;
-    if(i == -1)
-      return 0;
-    if(memo[i][j] != -1)
-      return memo[i][j];
-    if(s[i] == t[j]) memo[i][j] = dp(s, t, i-1, j-1) + dp(s, t, i-1, j);
-    else memo[i][j] = dp(s, t, i-1, j);
-    return memo[i][j];
-  }
+  unsigned long long memo[1001][1001];
   int numDistinct(string s, string t) {
-    memset(memo, -1, sizeof(memo));
-    return dp(s, t, s.size()-1, t.size()-1);
+    memset(memo, 0, sizeof(memo));
+    for(int i=0; i<=t.size(); i++)
+      memo[0][i] = 0;
+    for(int i=0; i<=s.size(); i++)
+      memo[i][0] = 1;
+    for(int j=1; j<=t.size(); j++)
+      for(int i=1; i<=s.size(); i++)
+        if(s[i-1] == t[j-1])
+          memo[i][j] = memo[i-1][j] + memo[i-1][j-1];
+        else
+          memo[i][j] = memo[i-1][j];
+    return memo[s.size()][t.size()];
   }
 };
