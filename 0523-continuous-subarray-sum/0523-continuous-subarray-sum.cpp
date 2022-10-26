@@ -5,8 +5,6 @@ public:
     int sum = nums[0];
     mp[nums[0]%k] = 1;
     for(int i=1; i<nums.size(); i++){
-      if(nums[i] == 0 && nums[i-1] == 0)
-        return true;
       sum += nums[i];
       if(sum%k == 0) 
         return true;
