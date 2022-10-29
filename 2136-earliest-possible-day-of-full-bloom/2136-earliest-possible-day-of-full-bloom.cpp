@@ -11,12 +11,10 @@ public:
       int days = grow_plant_time[0].first+grow_plant_time[0].second+1;
       int p0 = grow_plant_time[0].second;
       
-      cout<<days<<'\n';
       for(int i=1; i<grow_plant_time.size(); i++){
         auto [g, p] = grow_plant_time[i];
         days += max(0, (g+p+p0+1)-days);
         p0 += p;
-        cout<<days<<'\n';
       }
       return days-1;
     }
