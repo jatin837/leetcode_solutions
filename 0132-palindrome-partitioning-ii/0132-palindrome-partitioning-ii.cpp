@@ -2,7 +2,7 @@ class Solution {
 public:
   int minCut(string s) {
     bool isPalindrome[2001][2001];
-    vector<int>dp(2002, 2002);
+    vector<int>dp(s.length(), 2002);
     memset(isPalindrome, false, sizeof(isPalindrome));
     for(int i=0; i<s.length(); i++){
       isPalindrome[i][i] = true;
