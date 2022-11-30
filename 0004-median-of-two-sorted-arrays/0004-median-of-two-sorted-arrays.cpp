@@ -7,28 +7,20 @@ public:
     if(m > n)
         return findMedianSortedArrays(nums2, nums1);
     
-    int nlp = (m+n)>>1; // nlp -> Number of elements in left partition of merged array
     
     int s = 0;
     int e = m-1;
     
-    int Ali;
-    int Ari;
-    int Bli;
-    int Bri;
-      
-    int Aleft, Aright, Bleft, Bright;   
-    
     while(true){
       int ma = (s+e)>>1; // mid position in nums1 array
-      int mb = nlp - (ma + 1) - 1; // mid position in nums2 array
+      int mb = (m+n)/2 - (ma + 1) - 1; // mid position in nums2 array
       
 
-      Aleft = (ma>=0)?nums1[ma]:INT_MIN;
-      Aright = (ma+1>=nums1.size())?INT_MAX:nums1[ma+1];
+      int Aleft = (ma>=0)?nums1[ma]:INT_MIN;
+      int Aright = (ma+1>=nums1.size())?INT_MAX:nums1[ma+1];
         
-      Bleft = (mb>=0)?nums2[mb]:INT_MIN;
-      Bright = (mb+1>=nums2.size())?INT_MAX:nums2[mb+1];
+      int Bleft = (mb>=0)?nums2[mb]:INT_MIN;
+      int Bright = (mb+1>=nums2.size())?INT_MAX:nums2[mb+1];
       
       if (Aleft <= Bright and Bleft <= Aright){
         if ((m+n)&1)
