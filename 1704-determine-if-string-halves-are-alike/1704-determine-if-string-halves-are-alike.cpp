@@ -2,16 +2,7 @@ class Solution {
 public:
     int cntVwl(string& s){
         unordered_set<char>st;
-        st.insert('a');
-        st.insert('A');
-        st.insert('e');
-        st.insert('E');
-        st.insert('i');
-        st.insert('I');
-        st.insert('o');
-        st.insert('O');
-        st.insert('u');
-        st.insert('U');
+        st = {'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
         int cnt=0;
         for(char ch:s)
             cnt += st.count(ch);
