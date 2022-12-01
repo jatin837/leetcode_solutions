@@ -1,8 +1,7 @@
 class Solution {
 public:
     int cntVwl(string& s){
-        unordered_set<char>st;
-        st = {'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
+        unordered_set<char>st = {'a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'};
         int cnt=0;
         for(char ch:s)
             cnt += st.count(ch);
