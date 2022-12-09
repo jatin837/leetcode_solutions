@@ -11,14 +11,10 @@ public:
       if(node){
         int mn = min(top.second[0], node->val);
         int mx = max(top.second[1], node->val);
-        if(node->left || node->right){
-          st.push({node->left, {mn, mx}});
-          st.push({node->right, {mn, mx}});
-        }
-        else{
-          cout<<mn<<' '<<mx<<'\n';
+        if(node->left || node->right)
+          st.push({node->left, {mn, mx}}), st.push({node->right, {mn, mx}});
+        else
           ret = max(ret, abs(mn-mx));
-        }
       }
     }
     return ret;
