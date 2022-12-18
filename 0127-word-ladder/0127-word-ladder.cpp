@@ -1,7 +1,7 @@
 class Solution {
 public:
-    unordered_map<string, set<string>>buildGraph(vector<string>& wordList){
-      unordered_map<string, set<string>>G;
+    unordered_map<string, unordered_set<string>>buildGraph(vector<string>& wordList){
+      unordered_map<string, unordered_set<string>>G;
       for(string word:wordList){
         for(int i=0; i<word.size(); i++){
           string tmp = word;
@@ -15,7 +15,7 @@ public:
       queue<pair<string, int>>q;
       unordered_set<string>visited;
       q.push({beginWord, 0});
-      unordered_map<string, set<string>>G = buildGraph(wordList);
+      unordered_map<string, unordered_set<string>>G = buildGraph(wordList);
       while(q.size()){
         auto [currWord, dist] = q.front();
         q.pop();
