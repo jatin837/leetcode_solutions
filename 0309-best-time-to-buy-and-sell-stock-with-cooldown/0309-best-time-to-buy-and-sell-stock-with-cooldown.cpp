@@ -1,15 +1,18 @@
 class Solution {
+private:
+  int dp[5001][2];
+  int f(int day, bool buy, vector<int>&prices){
+    if(day >= prices.size())
+      return 0;
+    if(dp[day][buy] != -1)
+      return dp[day][buy];
+    if(buy) dp[day][buy] = max(-prices[day] + f(day+1, false, prices), f(day+1, true, prices));
+    else dp[day][buy] = max(prices[day]+f(day+2, true, prices), f(day+1, false, prices));
+    return dp[day][buy];
+  }
 public:
     int maxProfit(vector<int>& prices) {
-        int bsp=-prices[0],ssp=0,cd=0;
-        for(int i=1;i<prices.size();i++) {
-            int new_bsp = max(bsp, cd-prices[i]);
-            int new_ssp = max(ssp, prices[i]+bsp);
-            int new_cd = max(cd, ssp);;
-            cd = new_cd;
-            bsp=new_bsp;
-            ssp=new_ssp;
-        }
-        return ssp;
+      memset(dp, -1, sizeof(dp));
+      return f(0, true, prices);
     }
 };
