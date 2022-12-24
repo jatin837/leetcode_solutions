@@ -1,25 +1,26 @@
 class Solution {
+  long long memo[1001][2];
+  int mod=1e9+7;
+  long long f(int len, int type){
+    if(len == 1 and type == 0)
+      return 1;
+    if(len == 1 and type == 1)
+      return 0;
+    if(len == 2 and type == 0)
+      return 2;
+    if(len == 2 and type == 1)
+      return 1;
+    if(memo[len][type] != -1)
+      return memo[len][type];
+    if(type == 0)
+      memo[len][type] = (f(len-1, 0) + f(len-2, 0) + 2*f(len-1, 1))%mod;
+    else
+      memo[len][type] = (f(len-2, 0) + f(len-1, 1))%mod;
+    return memo[len][type];
+  }
 public:
     int numTilings(int n) {
-      long long dp10 = 1;
-      long long dp11 = 0;
-      long long dp20 = 2;
-      long long dp21 = 1;
-      long long dp31 = 1;
-      long long dp30 = 1;
-      int mod = 1e9+7;
-      if(n == 1)
-        return dp10;
-      if(n == 2)
-        return dp20;
-      for(int i=3; i<=n; i++){
-        dp30 = (dp20 + dp10 + 2*dp21)%mod;
-        dp31 = (dp21 + dp10)%mod;
-        dp10 = (dp20)%mod;
-        dp11 = (dp21)%mod;
-        dp20 = (dp30)%mod;
-        dp21 = (dp31)%mod;
-      }
-      return dp30;
+      memset(memo, -1, sizeof(memo));
+      return f(n, 0);
     }
 };
