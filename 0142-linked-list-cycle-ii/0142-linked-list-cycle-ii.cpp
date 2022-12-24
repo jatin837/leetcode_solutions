@@ -10,7 +10,7 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
       ListNode *p = head;
-      set<ListNode*>st;
+      unordered_set<ListNode*>st;
       while(p){
         if(st.count(p))
           return p;
