@@ -11,14 +11,20 @@ public:
       
       vector<int>ret;
       for(int q:queries){
-        for(int i=0; i<preSum.size(); i++){
-          if(preSum[i] > q){
-            ret.push_back(i);
-            break;
-          }
-          if(i == nums.size()-1)
-            ret.push_back(i+1);
+        int idx = lower_bound(preSum.begin(), preSum.end(), q)-preSum.begin();
+        if(idx == nums.size()){
+          ret.push_back(idx);    
+          continue;
         }
+        if(idx == -1){
+          ret.push_back(0);
+          continue;
+        }
+        if(preSum[idx] == q){
+          ret.push_back(idx+1);
+          continue;
+        }
+        ret.push_back(idx);
       }
       return ret;
     }
