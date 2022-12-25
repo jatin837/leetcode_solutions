@@ -12,14 +12,6 @@ public:
       vector<int>ret;
       for(int q:queries){
         int idx = upper_bound(preSum.begin(), preSum.end(), q)-preSum.begin();
-        if(idx == nums.size()){
-          ret.push_back(idx);    
-          continue;
-        }
-        if(idx == -1){
-          ret.push_back(0);
-          continue;
-        }
         ret.push_back(idx);
       }
       return ret;
