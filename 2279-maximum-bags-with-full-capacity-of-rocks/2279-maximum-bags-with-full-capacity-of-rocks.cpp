@@ -3,17 +3,14 @@ public:
     int maximumBags(vector<int>& capacity, vector<int>& rocks, int extra) {
       priority_queue<int,vector<int>,greater<int>>left;
       for(int i=0; i<rocks.size(); i++)
-        left.push(capacity[i]-rocks[i]);
+        capacity[i]-=rocks[i];
+      sort(capacity.begin(), capacity.end());
       int ret = 0;
-      while(left.size() && extra > 0){
-        if(left.top() > extra){
+      for(int n:capacity){
+        extra -= n;
+        if(extra < 0)
           return ret;
-        }
-        if(left.top() <= extra){
-          extra -= left.top();
-          left.pop();
-          ret++;
-        }
+        ret++;
       }
       return ret;
     }
