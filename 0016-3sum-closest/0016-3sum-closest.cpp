@@ -3,6 +3,22 @@ public:
   int diff(int a, int b){
     return abs(a-b);
   }
+  int nSumClosest(int n, vector<int>&nums, int beg, int end, int target){
+    if(n == 2)
+      return twoSumClosest(nums, beg, end, target);
+    int i=beg;
+    int d = INT_MAX;
+    int ret = 0;
+    while(i<=end-n+1){
+      int sum = nums[i] + nSumClosest(n-1, nums, i+1, end, target-nums[i]);
+      if(d > diff(sum, target)){
+        d = diff(sum, target);
+        ret = sum;
+      }
+      i++;
+    }
+    return ret;
+  }
   int twoSumClosest(vector<int>&nums, int beg, int end, int target){
     if(end-beg == 1)
       return nums[beg]+ nums[end];
@@ -25,15 +41,6 @@ public:
   }
   int threeSumClosest(vector<int>& nums, int target) {
     sort(nums.begin(), nums.end());
-    int ret = 0;
-    int d = INT_MAX;
-    for(int i=0; i<nums.size()-2; i++){
-      int cand = nums[i] + twoSumClosest(nums, i+1, nums.size()-1, target-nums[i]);
-      if(diff(cand, target) < d){
-        d = diff(cand, target);
-        ret = cand;
-      }
-    }
-    return ret;
+    return nSumClosest(3, nums, 0, nums.size()-1, target);
   }
 };
