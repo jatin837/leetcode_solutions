@@ -5,10 +5,12 @@ public:
       int ret = 0;
       int left = 0;
       int right = 0;
+      int maxf = 0;
       fq[s[right]-'A']++;
       while(left < s.length() && right < s.length()){
         int len = right - left + 1;
-        int ops = len - *max_element(fq.begin(), fq.end());
+        maxf = max(maxf, fq[s[right]-'A']);
+        int ops = len - maxf;
         if(ops <= k){
           ret = max(len, ret);
           right++;
