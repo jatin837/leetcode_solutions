@@ -1,7 +1,6 @@
 class Solution {
   string f(string &s, int beg, int end){
     string ret = "";
-    int len = end-beg+1;
     int currNum = 0;
     int i=beg;
     while(i<=end){
