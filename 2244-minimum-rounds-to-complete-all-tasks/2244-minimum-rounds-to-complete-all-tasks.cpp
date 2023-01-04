@@ -10,11 +10,7 @@ public:
           return -1;
         int q = y/3;
         int r = y%3;
-        if(r == 0){
-          round+=q;
-          continue;
-        }
-        round += (q-1)+2;
+        round += q + int(r != 0);
       }
       return round;
     }
