@@ -1,15 +1,22 @@
-bool cmp(vector<int>& a, vector<int>& b) {return a[1] < b[1];}
 class Solution {
-public:  
-  int findMinArrowShots(vector<vector<int>>& segments) {
-    sort(segments.begin(), segments.end(), cmp);
-    int ans = 0, arrow = 0;
-    for (int i = 0; i < segments.size(); i ++) {
-      if (ans == 0 || segments[i][0] > arrow) {
-        ans ++;
-        arrow = segments[i][1];
-      }
+public:
+  vector<int>getOverlap(vector<int>&p1, vector<int>&p2){
+    return {max(p1[0], p2[0]), min(p1[1], p2[1])};
+  }
+  int findMinArrowShots(vector<vector<int>>& p) {
+    sort(p.begin(), p.end());
+    stack<vector<int>>st;
+    st.push(p[0]);
+    for(int i=1; i<p.size(); i++){
+      vector<int> overlap = getOverlap(st.top(), p[i]);
+      printf("%d, %d\n", overlap[0], overlap[1]);
+      if(overlap[0] <= overlap[1])
+        st.pop();
+      else
+        overlap = p[i];
+      st.push(overlap);
     }
-    return ans;
+    cout<<'\n';
+    return st.size();
   }
 };
