@@ -9,14 +9,12 @@ public:
     st.push(p[0]);
     for(int i=1; i<p.size(); i++){
       vector<int> overlap = getOverlap(st.top(), p[i]);
-      printf("%d, %d\n", overlap[0], overlap[1]);
       if(overlap[0] <= overlap[1])
         st.pop();
       else
         overlap = p[i];
       st.push(overlap);
     }
-    cout<<'\n';
     return st.size();
   }
 };
