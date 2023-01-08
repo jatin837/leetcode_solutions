@@ -17,10 +17,10 @@ public:
       for(int i=0; i<points.size(); i++){
         unordered_map<string, int> mp;
         for(int j=0; j<points.size(); j++){
-          if(j != i){
-            string dy_dx = slope(points[i][0], points[j][0], points[i][1], points[j][1]);
-            mp[dy_dx]++;
-          }
+          if(j == i)
+            continue;
+          string dy_dx = slope(points[i][0], points[j][0], points[i][1], points[j][1]);
+          mp[dy_dx]++;
         }
         for(auto [m, cnt]:mp)
           ret = max(ret, cnt+1);
