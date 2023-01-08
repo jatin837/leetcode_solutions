@@ -5,7 +5,12 @@ class Solution {
       swap(a, b);
     }
     return a;
-} 
+  } 
+  string slope(int x1, int x2, int y1, int y2){
+    int g = gcd(y1-y2, x1-x2);
+    string dy_dx = to_string((y1-y2)/g) + "_" + to_string((x1-x2)/g);
+    return dy_dx;
+  }
 public:
     int maxPoints(vector<vector<int>>& points) {
       int ret = 1;
@@ -17,8 +22,7 @@ public:
             int y1 = points[i][1];
             int x2 = points[j][0];
             int y2 = points[j][1];
-            int g = gcd(y1-y2, x1-x2);
-            string dy_dx = to_string((y1-y2)/g) + "_" + to_string((x1-x2)/g);
+            string dy_dx = slope(x1, x2, y1, y2);
             mp[dy_dx]++;
           }
         }
