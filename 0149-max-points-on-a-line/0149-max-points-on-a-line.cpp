@@ -14,8 +14,8 @@ public:
             mp[m]++;
           }
         }
-        for(auto [x, y]:mp)
-          ret = max(ret, y+1);
+        for(auto [m, cnt]:mp)
+          ret = max(ret, cnt+1);
       }
       return ret;
     }
