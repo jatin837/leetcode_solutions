@@ -18,11 +18,7 @@ public:
         unordered_map<string, int> mp;
         for(int j=0; j<points.size(); j++){
           if(j != i){
-            int x1 = points[i][0];
-            int y1 = points[i][1];
-            int x2 = points[j][0];
-            int y2 = points[j][1];
-            string dy_dx = slope(x1, x2, y1, y2);
+            string dy_dx = slope(points[i][0], points[j][0], points[i][1], points[j][1]);
             mp[dy_dx]++;
           }
         }
