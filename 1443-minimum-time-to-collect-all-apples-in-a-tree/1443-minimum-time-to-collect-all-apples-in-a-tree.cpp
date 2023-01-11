@@ -15,9 +15,7 @@ public:
       for(auto e:edges)
         G[e[0]].push_back(e[1]), G[e[1]].push_back(e[0]);
       dfs(0, -1, G, hasApple);
-      int cnt = 0;
-      for(bool n:hasApple)
-        cnt += n;
+      int cnt = count(hasApple.begin(), hasApple.end(), true);
       return max(2*(cnt-1), 0);
     }
 };
