@@ -32,8 +32,7 @@ public:
     vector<vector<int>>G(parent.size());
     for(int i=1; i<parent.size(); i++)
       G[parent[i]].push_back(i);
-    // perform a BFS
-    // If the next node and current node has different label, then, we move to add it to the queue
+    // perform a DFS
     dfs(0, G, s);
     return gret;
   }
