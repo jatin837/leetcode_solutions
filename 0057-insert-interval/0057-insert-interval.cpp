@@ -6,9 +6,7 @@ public:
   vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
     int indx = lower_bound(begin(intervals), end(intervals), newInterval) - begin(intervals);
     intervals.insert(begin(intervals) + indx, newInterval);
-    int b = indx;
-    if(b && overlap(intervals[b-1], intervals[b]))
-      b -= 1;
+    int b = indx - (indx && overlap(intervals[indx-1], intervals[indx]));
     int e = b;
     vector<int>curr = intervals[b];
     while(e < intervals.size() && overlap(curr, intervals[e])){
