@@ -7,7 +7,7 @@ public:
     int indx = lower_bound(begin(intervals), end(intervals), newInterval) - begin(intervals);
     intervals.insert(begin(intervals) + indx, newInterval);
     int b = indx;
-    if(b && (intervals[b][0] <= intervals[b-1][1]))
+    if(b && overlap(intervals[b-1], intervals[b]))
       b -= 1;
     int e = b;
     vector<int>curr = intervals[b];
