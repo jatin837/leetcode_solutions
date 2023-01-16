@@ -26,15 +26,14 @@ public:
         insertInterval(intervals, newInterval);
         
         vector<vector<int>> answer;
-        for (int i = 0; i < intervals.size(); i++) {
+        int i=0; int j=0;
+        while(j < intervals.size() && i <= j){
             vector<int> currInterval = {intervals[i][0], intervals[i][1]};
-            // Merge until the list gets exhausted or no overlap is found.
-            while (i < intervals.size() && doesIntervalsOverlap(currInterval, intervals[i])) {
-                currInterval = mergeIntervals(currInterval, intervals[i]);
-                i++;
+            while (j < intervals.size() && doesIntervalsOverlap(currInterval, intervals[j])) {
+                currInterval = mergeIntervals(currInterval, intervals[j]);
+                j++;
             }
-            // Decrement to ensure we don't skip the interval due to outer for-loop incrementing.
-            i--;
+            i = j;
             answer.push_back(currInterval);
         }
         
