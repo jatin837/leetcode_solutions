@@ -1,29 +1,31 @@
 class Solution {
 public:
-  int flipped[100001];
-  int notflipped[100001];
   int minFlipsMonoIncr(string s) {
-    flipped[s.length()] = 0;
-    notflipped[s.length()] = 0;
+    int flipped = 0;
+    int notflipped = 0;
     s += '1';
     for(int i=s.length()-2; i>=0; i--){
+      int nflipped = 0;
+      int nnotflipped = 0;
       if(s[i] == '0' && s[i+1] == '0'){
-        flipped[i] = 1 + flipped[i+1];
-        notflipped[i] = min(flipped[i+1], notflipped[i+1]);
+        nflipped = 1 + flipped;
+        nnotflipped = min(flipped, notflipped);
       }
-      if(s[i] == '0' && s[i+1] == '1'){
-        flipped[i] = 1 + notflipped[i+1];
-        notflipped[i] = min(flipped[i+1], notflipped[i+1]);
+      else if(s[i] == '0' && s[i+1] == '1'){
+        nflipped = 1 + notflipped;
+        nnotflipped = min(flipped, notflipped);
       }
-      if(s[i] == '1' && s[i+1] == '0'){
-        flipped[i] = 1+min(flipped[i+1], notflipped[i+1]);
-        notflipped[i] = flipped[i+1];
+      else if(s[i] == '1' && s[i+1] == '0'){
+        nflipped = 1+min(flipped, notflipped);
+        nnotflipped = flipped;
       }
-      if(s[i] == '1' && s[i+1] == '1'){
-        flipped[i] = 1+min(notflipped[i+1], flipped[i+1]);
-        notflipped[i] = notflipped[i+1];
+      else if(s[i] == '1' && s[i+1] == '1'){
+        nflipped = 1+min(notflipped, flipped);
+        nnotflipped = notflipped;
       }
+      flipped = nflipped;
+      notflipped = nnotflipped;
     }
-    return min(flipped[0], notflipped[0]);
+    return min(flipped, notflipped);
   }
 };
