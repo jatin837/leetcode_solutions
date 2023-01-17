@@ -1,15 +1,14 @@
 class Solution {
 public:
   int findJudge(int n, vector<vector<int>>& trust) {
-    vector<int>in(n+1);
-    vector<int>out(n+1);
+    vector<pair<int, int>>deg(n+1);
     if(n == 1)
       return 1;
     for(auto t:trust)
-      in[t[1]]++,out[t[0]]++;
+      deg[t[1]].first++,deg[t[0]].second++;
     int ret = -1;
-    for(int i=0; i<in.size(); i++)
-      if((in[i] == n-1) && (out[i] == 0))
+    for(int i=0; i<deg.size(); i++)
+      if((deg[i].first == n-1) && (deg[i].second == 0))
         if(ret != -1)
           return -1;
         else
