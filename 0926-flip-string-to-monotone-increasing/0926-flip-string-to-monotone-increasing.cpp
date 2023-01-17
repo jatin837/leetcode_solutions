@@ -1,29 +1,29 @@
 class Solution {
 public:
-  int dp[2][100001];
-  int f(int pos, char prev, string& s){
-    if(pos == s.length())
-      return 0;
-    char curr = s[pos];
-    if(dp[prev-'0'][pos] != -1)
-      return dp[prev-'0'][pos];
-    if(curr == '0' && prev == '0')
-      dp[prev-'0'][pos] =  min(
-        f(pos+1, '0', s), // no flip
-        1+f(pos+1, '1', s) // flip
-      );
-    else if(curr == '0' && prev == '1')
-      dp[prev-'0'][pos] = 1+f(pos+1, '1', s);
-    else if(curr == '1' && prev == '0')
-      dp[prev-'0'][pos] = min(
-        f(pos+1, '1', s), // no flip
-        1+f(pos+1, '0', s) // flip
-      );
-    else dp[prev-'0'][pos] = f(pos+1, '1', s);
-    return dp[prev-'0'][pos];
-  }
+  int flipped[100001];
+  int notflipped[100001];
   int minFlipsMonoIncr(string s) {
-    memset(dp, -1, sizeof(dp));
-    return f(0, '0', s);
+    flipped[s.length()] = 0;
+    notflipped[s.length()] = 0;
+    s += '1';
+    for(int i=s.length()-2; i>=0; i--){
+      if(s[i] == '0' && s[i+1] == '0'){
+        flipped[i] = 1 + flipped[i+1];
+        notflipped[i] = min(flipped[i+1], notflipped[i+1]);
+      }
+      if(s[i] == '0' && s[i+1] == '1'){
+        flipped[i] = 1 + notflipped[i+1];
+        notflipped[i] = min(flipped[i+1], notflipped[i+1]);
+      }
+      if(s[i] == '1' && s[i+1] == '0'){
+        flipped[i] = 1+min(flipped[i+1], notflipped[i+1]);
+        notflipped[i] = flipped[i+1];
+      }
+      if(s[i] == '1' && s[i+1] == '1'){
+        flipped[i] = 1+min(notflipped[i+1], flipped[i+1]);
+        notflipped[i] = notflipped[i+1];
+      }
+    }
+    return min(flipped[0], notflipped[0]);
   }
 };
