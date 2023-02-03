@@ -20,7 +20,7 @@ public:
           return jmpcnt;
         pair<int, bool>forwardJump = {currPos+a, false};
         pair<int, bool>backwardJump = {currPos-b, true};
-        if(visited.count(forwardJump) == 0 and forwardJump.first < 7000){
+        if(visited.count(forwardJump) == 0 and forwardJump.first < 6000){
           q.push(forwardJump);
           visited.insert(forwardJump);
         }
