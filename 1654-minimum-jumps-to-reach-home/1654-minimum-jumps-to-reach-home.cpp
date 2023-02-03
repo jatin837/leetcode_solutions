@@ -1,8 +1,6 @@
 class Solution {
 public:
   int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
-    if(x == 0)
-      return 0;
     set<pair<int, bool>>visited;
     for(auto n:forbidden)
       visited.insert({n, true}),visited.insert({n, false});
