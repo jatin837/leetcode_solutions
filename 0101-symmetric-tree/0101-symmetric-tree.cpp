@@ -1,28 +1,15 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    bool compare(TreeNode* left, TreeNode* right){
-      if (left == nullptr and right == nullptr)
-        return true;
-      if(left and right and left->val == right->val){
-        bool outside = compare(left->left, right->right);
-        bool inside = compare(right->left, left->right);
-        return outside and inside;
-      }
-      return false;
-    } 
-  
-    bool isSymmetric(TreeNode* root) {
-      return compare(root->left, root->right);
-    }
-};
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+      def compare(node1, node2):
+        if(node1 == None and node2 == None):
+          return True
+        if(node1 and node2 and node1.val == node2.val):
+          return compare(node1.left, node2.right) and compare(node1.right, node2.left)
+        return False
+      return compare(root.left, root.right)
